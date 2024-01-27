@@ -2,3 +2,4 @@
 modelsim.ini
 transcript
 work/*
+temp.sv_bkp
