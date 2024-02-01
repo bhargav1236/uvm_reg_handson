@@ -1,2 +1,2 @@
-# uvm_reg_eg
+# Verifiaction of Registers in a simple DUT.
  
