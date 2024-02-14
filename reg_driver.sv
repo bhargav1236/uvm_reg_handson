@@ -31,7 +31,10 @@ task drive_reg_design();
 	end
 	else begin
 		@(posedge reg_intf.dout_vld);
-		reg_item.dout = reg_intf.dout;
+		//Implicit prediction uses the rsp object from driver to sequencer
+		//updating the reg_item as same reg_item goes to bus2reg as response item from driver to sequencer and to bus2reg
+		//The same can be observed by object id of reg_item in reg2bus and bus2reg using .print function
+		reg_item.dout = reg_intf.dout; 
 		`uvm_info(get_full_name(), $psprintf("reg_item.dout:: %h", reg_item.dout), UVM_LOW);
 	end
 	

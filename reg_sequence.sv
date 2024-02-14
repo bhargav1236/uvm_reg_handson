@@ -78,14 +78,16 @@ end
  foreach (fields[i]) begin
 `uvm_info (get_full_name(), $psprintf("dut_reg model.default_map.get_fields(fields): %0s", fields[i].get_full_name()), UVM_LOW);
  end
-//tmp:value wr 32 hFFFFFFFF;
-//tmp:dut_reg_model reg a model inst.write(status, value wr);
- //tep:dut_reg_model regb model inst.write(status, value wr);
-//tep:dut_reg_model reg a model inst. read(status, value_rd);
- //tap: `uvm_info(get_full_name(), $psprintf("Read: reg a status Noh Value: %d", status, value_rid), UVM_LOW);
-//tap:out reg model reg b model inst read(status, value rd); 86//tep: `uvm_info(get_full_name(), $psprintf("Read: regb status sah Value: ad", status, value rd), UVM_LOW);
-//tap:dutr reg model,reg a model inst. mirror(status, UVM CHECK); 88//tmp:value.rd dut_reg_model.reg a model inst.get();
-//tep value rd dut_reg_model.reg a model inst get mirrored value();
+value_wr = 32'hFFFFFFFF;
+dut_reg_model.reg_a_model_inst.write(status, value_wr);
+dut_reg_model.reg_b_model_inst.write(status, value_wr);
+dut_reg_model.reg_a_model_inst.read(status, value_rd);
+`uvm_info(get_full_name(), $psprintf("Read: reg_a status %0h Value: %0d", status, value_rd), UVM_LOW);
+dut_reg_model.reg_b_model_inst.read(status, value_rd); 
+`uvm_info(get_full_name(), $psprintf("Read: reg_b status %0h Value: %0d", status, value_rd), UVM_LOW);
+dut_reg_model.reg_a_model_inst.mirror(status, UVM_CHECK);
+value_rd = dut_reg_model.reg_a_model_inst.get(); 
+value_rd = dut_reg_model.reg_a_model_inst.get_mirrored_value();
 dut_reg_model.reg_a_model_inst.read(status, value_rd); 
 `uvm_info(get_full_name(), $psprintf("Read: reg_a status %0d value %0d", status, value_rd), UVM_LOW);
 
